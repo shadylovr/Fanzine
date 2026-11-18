@@ -35,20 +35,30 @@
     <p class="indicador-mesa">HAZ CLIC EN LA PORTADA PARA ABRIR</p>
   </main>
 
+    <audio id="sonido-pagina" src="audio/paper.mp3" preload="auto"></audio>
   <script>
     const revista = document.getElementById('revista');
+    const sonidoPagina = document.getElementById('sonido-pagina');
     let abriendo = false;
 
     function abrirRevista() {
       if (abriendo) return;
       abriendo = true;
-      
-      revista.classList.add('abierta');
 
-      // Redirige a interior.html cuando termina el giro de la portada
-      setTimeout(() => {
+      revista.classList.add('abierta');
+      sonidoPagina.currentTime = 0;
+
+      
+      sonidoPagina.onended = () => {
         window.location.href = 'inside.html';
-      }, 1150);
+      };
+
+      sonidoPagina.play().catch((error) => {
+        console.error('Error de audio:', error);
+        setTimeout(() => {
+          window.location.href = 'inside.html';
+        }, 1150);
+      });
     }
 
     revista.addEventListener('click', abrirRevista);
