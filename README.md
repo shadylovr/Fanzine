@@ -1,1 +1,1 @@
-# libreria
+# Fanzine Sziveszter Mako
