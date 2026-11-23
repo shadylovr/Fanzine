@@ -96,13 +96,37 @@ body{
   
 }
 
-.portada-row > img {
+.portada-row > .wip-link {
+  position: relative;
   display: block;
   flex: 0 1 auto;
   width: min(70vw, 580px);
   max-width: 100%;
+}
+
+.wip-link img {
+  display: block;
+  width: 100%;
   height: auto;
   object-fit: contain;
+}
+
+.wip-link span {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  padding: 8px 12px;
+  background: rgba(22, 22, 22, .78);
+  color: #fff;
+  font-family: edit, Georgia, serif;
+  font-size: clamp(12px, 1.2vw, 16px);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.wip-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
 }
 
 
@@ -124,17 +148,17 @@ body{
 
 .wi-gallery-video {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  gap: clamp(12px, 2vw, 24px);
-  width: min(92vw, 1400px);
+  gap: 18px;
+  width: min(92vw, 1100px);
 }
 
 .wi-gallery {
-  flex: 1 1 0;
-  min-width: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(12px, 2vw, 24px);
+  width: 100%;
 }
 
 .wi-gallery img {
@@ -152,27 +176,49 @@ body{
   transform: translateY(-5px);
 }
 
+.wiv-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(18px, 3vw, 36px);
+  width: 100%;
+}
+
+.wiv-hint {
+  flex: 1;
+  max-width: 540px;
+  margin: 0;
+  color: #d2b692;
+  font-family: edit;
+  font-size: clamp(23px, 1.5vw, 28px);
+  letter-spacing: .12em;
+  line-height: 1.45;
+  text-align: right;
+  text-transform: uppercase;
+}
+
 .wiv-video {
   display: block;
-  flex: 0 1 auto;
-  width: min(40vw, 580px);
-  max-width: 42%;
+  width: min(70vw, 420px);
+  max-width: 100%;
   height: auto;
 }
 
 @media (max-width: 760px) {
-  .wi-gallery-video {
+  .wiv-row {
     flex-direction: column;
+    align-items: flex-start;
   }
 
-  .wi-gallery {
+  .wiv-hint {
+    flex: none;
     width: 100%;
+    text-align: left;
   }
 
   .wiv-video {
     align-self: flex-end;
-    width: min(70vw, 580px);
-    max-width: 100%;
+    width: min(70vw, 420px);
   }
 }
 
