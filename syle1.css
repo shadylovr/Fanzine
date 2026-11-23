@@ -671,7 +671,7 @@ blockquote {
   overflow: hidden;
   border: 0;
   background: transparent;
-  cursor: crosshair;
+  cursor: pointer;
 }
 
 .reveal-photo img {

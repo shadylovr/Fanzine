@@ -73,27 +73,27 @@
         <section class="page page-left people-page" aria-label="Página izquierda">
           <h2 class="people-heading">Escoge</h2>
           <div class="people-grid">
-            <button class="reveal-photo" type="button" aria-expanded="false" aria-label="Revelar Willem Dafoe">
+            <a class="reveal-photo" href="wi.html" aria-label="Abrir la página de Willem Dafoe">
               <img src="assets/wi.jpg" alt="Retrato editorial de Willem Dafoe">
               <span class="photo-reveal-text" aria-hidden="true">Willem Dafoe</span>
-            </button>
-            <button class="reveal-photo" type="button" aria-expanded="false" aria-label="Revelar Jenna Ortega">
+            </a>
+            <a class="reveal-photo" href="jenna.html" aria-label="Abrir la página de Jenna Ortega">
               <img src="assets/jenna.jpg" alt="Retrato editorial de Jenna Ortega">
               <span class="photo-reveal-text" aria-hidden="true">Jenna Ortega</span>
-            </button>
+            </a>
           </div>
         </section>
         <section class="page page-right people-page" aria-label="Página derecha">
           <h2 class="people-heading">Uno</h2>
           <div class="people-grid">
-            <button class="reveal-photo" type="button" aria-expanded="false" aria-label="Revelar Olivia Rodrigo">
+            <a class="reveal-photo" href="oli.html" aria-label="Abrir la página de Olivia Rodrigo">
               <img src="assets/oli.jpg" alt="Retrato editorial de Olivia Rodrigo">
               <span class="photo-reveal-text" aria-hidden="true">Olivia Rodrigo</span>
-            </button>
-            <button class="reveal-photo" type="button" aria-expanded="false" aria-label="Revelar Elle Fanning">
+            </a>
+            <a class="reveal-photo" href="fannin.html" aria-label="Abrir la página de Elle Fanning">
               <img src="assets/fannin.jpg" alt="Retrato editorial de Elle Fanning">
               <span class="photo-reveal-text" aria-hidden="true">Elle Fanning</span>
-            </button>
+            </a>
           </div>
         </section>
       </article>
@@ -111,14 +111,6 @@
       </div>
       <button id="next" type="button" aria-label="Página siguiente">Siguiente →</button>
     </nav>
-    <audio
-      id="background-music"
-      src="audio/dreams.mp3"
-      autoplay
-      loop
-      preload="auto"
-      hidden>
-    </audio>
   </main>
 
   <audio id="page-turn-sound" src="audio/paper.mp3" preload="auto"></audio>
@@ -128,31 +120,9 @@
     const spreads = [...document.querySelectorAll('.spread')];
     const dots = [...document.querySelectorAll('.dot')];
     const pageTurnSound = document.getElementById('page-turn-sound');
-    const backgroundMusic = document.getElementById('background-music');
     let current = 0;
     let turning = false;
     let draggingPage = false;
-
-    function resumeMusic() {
-      document.removeEventListener('pointerdown', resumeMusic);
-      document.removeEventListener('touchstart', resumeMusic);
-      document.removeEventListener('keydown', resumeMusic);
-      startMusic();
-    }
-
-    function startMusic() {
-      backgroundMusic.play().catch((error) => {
-        if (error.name === 'NotAllowedError') {
-          document.addEventListener('pointerdown', resumeMusic);
-          document.addEventListener('touchstart', resumeMusic);
-          document.addEventListener('keydown', resumeMusic);
-          return;
-        }
-        console.error('No se pudo reproducir dreams.mp3:', error);
-      });
-    }
-
-    startMusic();
 
     document.querySelectorAll('.spread[data-page="1"] .portrait-page img').forEach((photo) => {
       photo.setAttribute('role', 'button');
@@ -198,19 +168,12 @@
     document.querySelectorAll('.reveal-photo').forEach((photo) => {
       function setRevealed(revealed) {
         photo.classList.toggle('revealed', revealed);
-        photo.setAttribute('aria-expanded', String(revealed));
       }
 
       photo.addEventListener('pointermove', () => setRevealed(true));
       photo.addEventListener('pointerleave', () => setRevealed(false));
       photo.addEventListener('focus', () => setRevealed(true));
       photo.addEventListener('blur', () => setRevealed(false));
-      photo.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          setRevealed(!photo.classList.contains('revealed'));
-        }
-      });
     });
 
     function createTurnSheet(fromSpread, toSpread, direction) {
