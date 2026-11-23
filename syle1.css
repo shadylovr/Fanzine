@@ -26,7 +26,7 @@
   --moss: #59614d;
   --rust: #9a4f3d;
   --line: rgba(23, 25, 20, 0.26);
-  --moss2: #4a85a9;
+  --moss2: #834e69;
 }
 
 * {
@@ -220,7 +220,7 @@ body {
 
 .cover-page h1 {
   margin: 0;
-  font-family: aston;
+  font-family:edit;
   font-size: clamp(20px, 4.2vw, 90px);
   font-weight: 400;
   line-height: .78;
@@ -231,7 +231,7 @@ body {
 .cover-page h1 em {
   color: var(--moss2);
   font-weight: 400;
-  font-family: edit ;
+  font-family: aston ;
 }
 
 .intro {
